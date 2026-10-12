@@ -1,11 +1,12 @@
 import { useCallback, useEffect, useMemo, useState } from 'react';
 import {
-  Activity, Bell, ChevronRight, CircleDollarSign, Clock3, Database, FileSearch, Fingerprint as FingerprintIcon,
-  LayoutDashboard, Network, Pause, Play, RotateCcw, Search, Settings, ShieldCheck, SlidersHorizontal, Sparkles,
+  Activity, Bell, ChevronRight, CircleDollarSign, Clock3, Database, Fingerprint as FingerprintIcon,
+  Network, Pause, Play, RotateCcw, Search, ShieldCheck, SlidersHorizontal, Sparkles,
   Target, UsersRound, WalletCards,
 } from 'lucide-react-native';
 import { ActivityIndicator, Pressable, ScrollView, StyleSheet, Text, useWindowDimensions, View } from 'react-native';
 import { Fingerprint } from '../components/Fingerprint';
+import { DesktopSidebar, MobileNavigation } from '../components/Navigation';
 import { NetworkGraph } from '../components/NetworkGraph';
 import { fallbackResult } from '../lib/fallback';
 import type { Candidate, DatasetId, Signal, TraceResult, WindowId } from '../lib/types';
@@ -25,15 +26,6 @@ function StatCard({ label, value, meta, icon: Icon }: { label: string; value: st
 function PriorityBadge({ score }: { score: number }) {
   const tone = score >= 85 ? '#f0b4d7' : score >= 70 ? '#dfbca3' : '#9ebfac';
   return <View style={[styles.priorityBadge, { borderColor: `${tone}66`, backgroundColor: `${tone}14` }]}><View style={[styles.dot, { backgroundColor: tone }]} /><Text style={[styles.priorityText, { color: tone }]}>{score} priority</Text></View>;
-}
-
-function SideNav({ compact }: { compact: boolean }) {
-  const items = [[LayoutDashboard, 'Command center'], [Network, 'Networks'], [FileSearch, 'Evidence'], [Clock3, 'Time machine'], [FingerprintIcon, 'Fingerprints']] as const;
-  return <View style={[styles.sidebar, compact && styles.sidebarCompact]}>
-    <View style={styles.brandMark}><View style={styles.brandGlyph}><View style={styles.brandLineA} /><View style={styles.brandLineB} /></View>{!compact && <View><Text style={styles.brand}>LaundraLens<Text style={styles.brandAccent}>.ai</Text></Text><Text style={styles.brandMeta}>TRACE INTELLIGENCE</Text></View>}</View>
-    <View style={styles.navList}>{items.map(([Icon, label], i) => <Pressable key={label} style={[styles.navItem, i === 0 && styles.navActive]}><Icon color={i === 0 ? '#f3cee7' : '#827780'} size={19} />{!compact && <Text style={[styles.navText, i === 0 && styles.navTextActive]}>{label}</Text>}{i === 0 && !compact && <View style={styles.navIndicator} />}</Pressable>)}</View>
-    <View style={styles.sidebarFoot}>{!compact && <View style={styles.systemCard}><View style={styles.between}><Text style={styles.systemLabel}>TRACE engine</Text><View style={styles.onlineDot} /></View><Text style={styles.systemValue}>Operational</Text><Text style={styles.mutedSmall}>Evidence model v1.4</Text></View>}<Pressable style={styles.navItem}><Settings color="#827780" size={19} />{!compact && <Text style={styles.navText}>Settings</Text>}</Pressable></View>
-  </View>;
 }
 
 function CandidateList({ candidates, selected, onSelect }: { candidates: Candidate[]; selected?: Candidate; onSelect: (c: Candidate) => void }) {
@@ -87,8 +79,9 @@ export default function Home() {
   if (!selected) return <View style={styles.center}><ActivityIndicator color="#d9a8ca" /><Text style={styles.muted}>No candidate network matches these filters.</Text></View>;
 
   return <View style={styles.app}>
-    {!isMobile && <SideNav compact={compactNav} />}
+    {!isMobile && <DesktopSidebar compact={compactNav} />}
     <ScrollView style={styles.main} contentContainerStyle={[styles.content, isMobile && styles.contentMobile]}>
+      {isMobile && <MobileNavigation />}
       <View style={[styles.header, isMobile && { alignItems: 'flex-start' }]}><View style={{ gap: 6 }}><Text style={styles.eyebrowAccent}>FINANCIAL INTELLIGENCE COMMAND CENTER</Text><Text style={[styles.title, isMobile && { fontSize: 30 }]}>See the network behind the numbers.</Text><Text style={styles.subtitle}>TRACE connects timing, relationships, and movement patterns into verifiable investigation leads.</Text></View><View style={styles.headerTools}><Pressable style={styles.roundButton}><Search color="#a99ca6" size={18} /></Pressable><Pressable style={styles.roundButton}><Bell color="#a99ca6" size={18} /></Pressable><View style={styles.avatar}><Text style={styles.avatarText}>AV</Text></View></View></View>
 
       <View style={styles.filterBar}>

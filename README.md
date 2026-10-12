@@ -17,6 +17,18 @@ LaundraLens.ai is an explainable financial-network intelligence SaaS prototype. 
 - **Benign vs. suspicious comparison** to make false-positive context visible.
 - **Network fingerprint** across structural complexity, temporal unusualness, flow concentration, and relationship density.
 - **Responsive Expo client** for web, iOS, and Android, with a dark graphite/plum interface inspired by the supplied palette.
+- **Route-aware desktop and mobile navigation** across six focused product pages.
+
+## Product routes
+
+| Route | Workspace |
+| --- | --- |
+| `/` | Live financial intelligence command center |
+| `/networks` | Candidate queue and isolated relationship graphs |
+| `/evidence` | Evidence reasons, highlighted edges, and source transactions |
+| `/time-machine` | Timestamp-ordered network playback controls |
+| `/fingerprints` | Suspicious and benign signature comparison |
+| `/settings` | Local TRACE heuristic configuration |
 
 ## Architecture
 
