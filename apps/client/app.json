@@ -1,0 +1,13 @@
+{
+  "expo": {
+    "name": "LaundraLens.ai",
+    "slug": "laundralens-ai",
+    "scheme": "laundralens",
+    "version": "1.0.0",
+    "orientation": "default",
+    "userInterfaceStyle": "dark",
+    "web": { "bundler": "metro", "output": "static" },
+    "plugins": ["expo-router"],
+    "experiments": { "typedRoutes": true }
+  }
+}
