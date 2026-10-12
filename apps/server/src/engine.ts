@@ -57,7 +57,7 @@ function evidenceFor(group: string[], txs: Transaction[]): EvidenceSignal[] {
   const cycleTx = relevant.filter((t) => relevant.some((u) => u.source === t.target && pairs.has(`${u.target}->${t.source}`)));
   if (cycleTx.length >= 2) signals.push({ id: 'circular-flow', label: 'Circular movement', weight: 31, description: `Value returns through reciprocal or circular paths across ${new Set(cycleTx.flatMap((t) => [t.source, t.target])).size} accounts.`, transactionIds: cycleTx.slice(0, 12).map((t) => t.id), edgeIds: cycleTx.slice(0, 12).map(edgeId) });
   const repeated = relevant.filter((t) => t.amount >= 40_000);
-  if (repeated.length >= 4) signals.push({ id: 'repeated-high-value', label: 'Repeated high-value transfers', weight: 22, description: `${repeated.length} transfers above $40K recur inside a tightly connected account set.`, transactionIds: repeated.slice(0, 12).map((t) => t.id), edgeIds: repeated.slice(0, 12).map(edgeId) });
+  if (repeated.length >= 4) signals.push({ id: 'repeated-high-value', label: 'Repeated high-value transfers', weight: 22, description: `${repeated.length} transfers above ₹40,000 recur inside a tightly connected account set.`, transactionIds: repeated.slice(0, 12).map((t) => t.id), edgeIds: repeated.slice(0, 12).map(edgeId) });
   return signals;
 }
 

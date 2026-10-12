@@ -17,7 +17,7 @@ const candidate: Candidate = {
   signals: [
     { id: 'rapid-relay', label: 'Rapid value relay', description: '12 transfers pass through intermediary accounts within two hours while retaining most of the incoming value.', weight: 34, transactionIds: keyTx.slice(6, 10).map((t) => t.id), edgeIds: keyTx.slice(6, 10).map((t) => `${t.source}->${t.target}`) },
     { id: 'fan-pattern', label: 'Concentrated fan-in / fan-out', description: 'CB-001 connects 7 counterparties, concentrating otherwise unrelated transfer paths.', weight: 28, transactionIds: keyTx.slice(0, 8).map((t) => t.id), edgeIds: keyTx.slice(0, 8).map((t) => `${t.source}->${t.target}`) },
-    { id: 'repeated-high-value', label: 'Repeated high-value transfers', description: '84 transfers above $40K recur inside a tightly connected account set.', weight: 22, transactionIds: keyTx.map((t) => t.id), edgeIds: keyTx.map((t) => `${t.source}->${t.target}`) },
+    { id: 'repeated-high-value', label: 'Repeated high-value transfers', description: '84 transfers above ₹40,000 recur inside a tightly connected account set.', weight: 22, transactionIds: keyTx.map((t) => t.id), edgeIds: keyTx.map((t) => `${t.source}->${t.target}`) },
   ], fingerprint: { structuralComplexity: 88, temporalUnusualness: 96, flowConcentration: 91, relationshipDensity: 73 },
 };
 const candidate2: Candidate = { ...candidate, id: 'TRACE-002', name: 'Circular flow B', typology: 'Circular flow', priority: 78, accountIds: accountIds.slice(0, 12), fingerprint: { structuralComplexity: 81, temporalUnusualness: 74, flowConcentration: 63, relationshipDensity: 86 } };
