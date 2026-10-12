@@ -2,6 +2,8 @@
 
 LaundraLens.ai is an explainable financial-network intelligence SaaS prototype. Its TRACE engine turns synthetic account and transaction data into investigation leads that analysts can verify against real transaction IDs, timestamps, and account relationships.
 
+### [Open the public working demo →](https://laundralens-ai.varsham-even-1821.chatgpt.site)
+
 ![Expo](https://img.shields.io/badge/Expo-React_Native-151116?style=flat-square&logo=expo)
 ![Fastify](https://img.shields.io/badge/Fastify-TypeScript-151116?style=flat-square&logo=fastify)
 ![Tests](https://img.shields.io/badge/TRACE-Vitest-dca6cb?style=flat-square)
