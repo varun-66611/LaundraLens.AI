@@ -17,7 +17,6 @@ LaundraLens.ai is an explainable financial-network intelligence SaaS prototype. 
 - **Explainable evidence inspector** linking every signal to source transaction IDs and graph edges.
 - **Transaction time machine** with play, pause, reset, and direct timeline navigation.
 - **Benign vs. suspicious comparison** to make false-positive context visible.
-- **Network fingerprint** across structural complexity, temporal unusualness, flow concentration, and relationship density.
 - **Responsive Expo client** for web, iOS, and Android, with a dark graphite/plum interface inspired by the supplied palette.
 - **Route-aware desktop and mobile navigation** across six focused product pages.
 
@@ -29,7 +28,6 @@ LaundraLens.ai is an explainable financial-network intelligence SaaS prototype. 
 | `/networks` | Candidate queue and isolated relationship graphs |
 | `/evidence` | Suspicions, highlighted edges, and source transactions |
 | `/time-machine` | Money Flow playback controls in timestamp order |
-| `/fingerprints` | Suspicious and benign signature comparison |
 | `/settings` | Local TRACE heuristic configuration |
 
 ## Architecture
@@ -38,7 +36,7 @@ LaundraLens.ai is an explainable financial-network intelligence SaaS prototype. 
 apps/
 ├── client/                 Expo Router + React Native Web
 │   ├── app/                Application shell and command center
-│   ├── components/         Network graph and fingerprint visualizations
+│   ├── components/         Network graph and shared product interfaces
 │   └── lib/                Typed API models and offline demo fallback
 └── server/                 Fastify + TypeScript
     └── src/
@@ -48,7 +46,7 @@ apps/
         └── index.ts        Validated HTTP API
 ```
 
-The graph engine uses Graphology for connected-component isolation. The interface renders data-linked graph relationships and fingerprints with `react-native-svg`. Zod validates analysis filters at the API boundary.
+The graph engine uses Graphology for connected-component isolation. The interface renders data-linked graph relationships with `react-native-svg`. Zod validates analysis filters at the API boundary.
 
 ## Quick start
 
@@ -99,7 +97,7 @@ Runs analysis with validated filters:
 }
 ```
 
-The response contains live metrics, in-scope accounts and transactions, candidate networks, evidence signals, graph-edge references, fingerprints, and a benign comparison cohort.
+The response contains live metrics, in-scope accounts and transactions, candidate networks, evidence signals, graph-edge references, and a benign comparison cohort.
 
 ## TRACE heuristics
 
@@ -109,8 +107,7 @@ This prototype intentionally uses transparent heuristics instead of a black-box 
 2. Build an undirected working graph from high-value transfers.
 3. Isolate connected components of 4–30 accounts.
 4. Compute evidence for rapid relays, concentrated fan patterns, circular movement, and repeated high-value transfers.
-5. Derive the four-axis fingerprint directly from graph density, transfer cadence, and flow distribution.
-6. Rank the result using a configurable heuristic priority index.
+5. Rank the result using a configurable heuristic priority index derived from graph density, transfer cadence, flow concentration, and evidence strength.
 
 The score is an investigation aid, not an allegation or compliance disposition.
 

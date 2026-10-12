@@ -1,6 +1,6 @@
 import { usePathname, useRouter } from 'expo-router';
 import type { Href } from 'expo-router';
-import { Clock3, FileSearch, Fingerprint, LayoutDashboard, Network, Settings } from 'lucide-react-native';
+import { Clock3, FileSearch, LayoutDashboard, Network, Settings } from 'lucide-react-native';
 import { Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
 
 const navItems = [
@@ -8,7 +8,6 @@ const navItems = [
   { label: 'Networks', route: '/networks', Icon: Network },
   { label: 'Suspicions', route: '/evidence', Icon: FileSearch },
   { label: 'Money Flow', route: '/time-machine', Icon: Clock3 },
-  { label: 'Fingerprints', route: '/fingerprints', Icon: Fingerprint },
 ] as const;
 
 function Brand({ compact = false }: { compact?: boolean }) {

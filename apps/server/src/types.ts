@@ -41,12 +41,6 @@ export interface CandidateNetwork {
   accountIds: string[];
   transactionIds: string[];
   signals: EvidenceSignal[];
-  fingerprint: {
-    structuralComplexity: number;
-    temporalUnusualness: number;
-    flowConcentration: number;
-    relationshipDensity: number;
-  };
 }
 
 export interface TraceResult {

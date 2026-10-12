@@ -6,7 +6,6 @@ export interface Transaction { id: string; source: string; target: string; amoun
 export interface Signal { id: string; label: string; description: string; weight: number; transactionIds: string[]; edgeIds: string[] }
 export interface Candidate {
   id: string; name: string; typology: string; priority: number; accountIds: string[]; transactionIds: string[]; signals: Signal[];
-  fingerprint: { structuralComplexity: number; temporalUnusualness: number; flowConcentration: number; relationshipDensity: number };
 }
 export interface TraceResult {
   generatedAt: string;

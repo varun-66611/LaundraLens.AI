@@ -72,15 +72,15 @@ function candidate(group: string[], txs: Transaction[], index: number): Candidat
   const timestamps = relevant.map((t) => Date.parse(t.timestamp)).sort((a, b) => a - b);
   const gaps = timestamps.slice(1).map((t, i) => t - timestamps[i]);
   const fastRatio = gaps.filter((g) => g <= 2 * 60 * 60_000).length / Math.max(1, gaps.length);
-  const fingerprint = {
+  const priorityFactors = {
     structuralComplexity: clamp(35 + uniqueEdges * 2.1),
     temporalUnusualness: clamp(25 + fastRatio * 74),
     flowConcentration: clamp(concentration * 290),
     relationshipDensity: clamp(density * 420),
   };
-  const priority = clamp(Object.values(fingerprint).reduce((a, b) => a + b, 0) / 4 + signals.reduce((sum, s) => sum + s.weight, 0) * 0.18);
+  const priority = clamp(Object.values(priorityFactors).reduce((a, b) => a + b, 0) / 4 + signals.reduce((sum, s) => sum + s.weight, 0) * 0.18);
   const typology = signals.some((s) => s.id === 'circular-flow') ? 'Circular flow' : signals.some((s) => s.id === 'fan-pattern') ? 'Layered relay' : 'Dense transfer cluster';
-  return { id: `TRACE-${String(index + 1).padStart(3, '0')}`, name: index === 0 ? 'Transaction Network' : `${typology} ${String.fromCharCode(65 + index)}`, typology, priority, accountIds: group.slice(0, 30), transactionIds: relevant.map((t) => t.id), signals, fingerprint };
+  return { id: `TRACE-${String(index + 1).padStart(3, '0')}`, name: index === 0 ? 'Transaction Network' : `${typology} ${String.fromCharCode(65 + index)}`, typology, priority, accountIds: group.slice(0, 30), transactionIds: relevant.map((t) => t.id), signals };
 }
 
 export function runTrace(filters: AnalysisFilters): TraceResult {
@@ -99,7 +99,6 @@ export function runTrace(filters: AnalysisFilters): TraceResult {
   const benignComparison: CandidateNetwork = {
     id: 'BENIGN-001', name: 'Recurring payroll cohort', typology: 'Expected business activity', priority: 18,
     accountIds: benignIds, transactionIds: benignTx.map((t) => t.id), signals: [{ id: 'stable-cadence', label: 'Stable expected cadence', weight: 8, description: 'Transfers recur from one established business account at predictable intervals and comparable amounts.', transactionIds: benignTx.slice(0, 8).map((t) => t.id), edgeIds: benignTx.slice(0, 8).map(edgeId) }],
-    fingerprint: { structuralComplexity: 22, temporalUnusualness: 11, flowConcentration: 49, relationshipDensity: 18 },
   };
   return {
     generatedAt: new Date().toISOString(), filters,
