@@ -27,8 +27,8 @@ LaundraLens.ai is an explainable financial-network intelligence SaaS prototype. 
 | --- | --- |
 | `/` | Live financial intelligence command center |
 | `/networks` | Candidate queue and isolated relationship graphs |
-| `/evidence` | Evidence reasons, highlighted edges, and source transactions |
-| `/time-machine` | Timestamp-ordered network playback controls |
+| `/evidence` | Suspicions, highlighted edges, and source transactions |
+| `/time-machine` | Money Flow playback controls in timestamp order |
 | `/fingerprints` | Suspicious and benign signature comparison |
 | `/settings` | Local TRACE heuristic configuration |
 

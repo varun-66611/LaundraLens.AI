@@ -6,8 +6,8 @@ import { Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
 const navItems = [
   { label: 'Command center', route: '/', Icon: LayoutDashboard },
   { label: 'Networks', route: '/networks', Icon: Network },
-  { label: 'Evidence', route: '/evidence', Icon: FileSearch },
-  { label: 'Time machine', route: '/time-machine', Icon: Clock3 },
+  { label: 'Suspicions', route: '/evidence', Icon: FileSearch },
+  { label: 'Money Flow', route: '/time-machine', Icon: Clock3 },
   { label: 'Fingerprints', route: '/fingerprints', Icon: Fingerprint },
 ] as const;
 

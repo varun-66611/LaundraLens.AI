@@ -80,7 +80,7 @@ function candidate(group: string[], txs: Transaction[], index: number): Candidat
   };
   const priority = clamp(Object.values(fingerprint).reduce((a, b) => a + b, 0) / 4 + signals.reduce((sum, s) => sum + s.weight, 0) * 0.18);
   const typology = signals.some((s) => s.id === 'circular-flow') ? 'Circular flow' : signals.some((s) => s.id === 'fan-pattern') ? 'Layered relay' : 'Dense transfer cluster';
-  return { id: `TRACE-${String(index + 1).padStart(3, '0')}`, name: `${typology} ${String.fromCharCode(65 + index)}`, typology, priority, accountIds: group.slice(0, 30), transactionIds: relevant.map((t) => t.id), signals, fingerprint };
+  return { id: `TRACE-${String(index + 1).padStart(3, '0')}`, name: index === 0 ? 'Transaction Network' : `${typology} ${String.fromCharCode(65 + index)}`, typology, priority, accountIds: group.slice(0, 30), transactionIds: relevant.map((t) => t.id), signals, fingerprint };
 }
 
 export function runTrace(filters: AnalysisFilters): TraceResult {

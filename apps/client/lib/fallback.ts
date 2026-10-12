@@ -13,7 +13,7 @@ for (let d = 0; d < 6; d += 1) {
 }
 const keyTx = transactions.slice(0, 14);
 const candidate: Candidate = {
-  id: 'TRACE-001', name: 'Layered relay A', typology: 'Layered relay', priority: 92, accountIds, transactionIds: transactions.map((t) => t.id),
+  id: 'TRACE-001', name: 'Transaction Network', typology: 'Layered relay', priority: 92, accountIds, transactionIds: transactions.map((t) => t.id),
   signals: [
     { id: 'rapid-relay', label: 'Rapid value relay', description: '12 transfers pass through intermediary accounts within two hours while retaining most of the incoming value.', weight: 34, transactionIds: keyTx.slice(6, 10).map((t) => t.id), edgeIds: keyTx.slice(6, 10).map((t) => `${t.source}->${t.target}`) },
     { id: 'fan-pattern', label: 'Concentrated fan-in / fan-out', description: 'CB-001 connects 7 counterparties, concentrating otherwise unrelated transfer paths.', weight: 28, transactionIds: keyTx.slice(0, 8).map((t) => t.id), edgeIds: keyTx.slice(0, 8).map((t) => `${t.source}->${t.target}`) },
